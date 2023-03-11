@@ -64,7 +64,7 @@ resource "aws_route_table_association" "a" {
 #create private S3 bucket
 
 resource "aws_s3_bucket" "bucket" {
-  bucket = "mypribucketinterview"
+  bucket = "pribucketinterview"
   acl    = "private"
 }
 
@@ -92,7 +92,7 @@ connection {
 type     = "ssh"
 user     = "ec2-user"
 private_key = local_file.ssh_key.content
-host     = aws_instance.webserver1.public_ip
+host     = data.aws_eip.eip.public_ip
  }
  provisioner "remote-exec" {
     inline = [
